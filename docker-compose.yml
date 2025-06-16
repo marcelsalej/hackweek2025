@@ -2,14 +2,15 @@ version: '3.9'
 
 services:
   summarizer:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    working_dir: /app
+    build: .
     volumes:
-        -  /Users/marcelsalej/hackweek2025/standup-summarizer:/app 
-    env_file:
-      - .env
-    stdin_open: true
-    tty: true
+      # Mount the current directory to /app in the container
+      - ${HOST_CODE_DIR}:/app
+    working_dir: /app
+    environment:
+      # Pass environment variables if needed
+      PYTHONUNBUFFERED: 1
+      PYTHONDONTWRITEBYTECODE: 1
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     command: python agent_cli.py
