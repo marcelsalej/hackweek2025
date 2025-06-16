@@ -12,7 +12,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY environment variable not set. Please add it to your .env file.")
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("gemini-2.0-flash")
 
 # --- Agent Tools ---
 
@@ -138,6 +138,8 @@ def run_agent_chat():
 
     while True:
         user_input = input("\nUser: ").strip()
+
+        print(f"You entered: {user_input}")
         if user_input.lower() == 'exit':
             break
 
