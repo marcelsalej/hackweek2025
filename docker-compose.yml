@@ -3,14 +3,15 @@ version: '3.9'
 services:
   summarizer:
     build: .
-    volumes:
-      # Mount the current directory to /app in the container
-      - ${HOST_CODE_DIR}:/app
     working_dir: /app
-    environment:
-      # Pass environment variables if needed
-      PYTHONUNBUFFERED: 1
-      PYTHONDONTWRITEBYTECODE: 1
-      LANG: C.UTF-8
-      LC_ALL: C.UTF-8
     command: python agent_cli.py
+    volumes:
+      - /Users/marcelsalej/hackweek2025/standup-summarizer:/app:rw
+    networks:
+      - standup-summarizer_default
+    stdin_open: true
+    tty: true
+
+networks:
+  standup-summarizer_default:
+    external: true
