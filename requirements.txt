@@ -1,0 +1,14 @@
+# Core
+google-generativeai
+slack_sdk
+python-dotenv
+
+# For Data Ingestion
+requests
+PyGithub
+jira
+atlassian-python-api
+
+# For ML Models (optional, but in original project)
+transformers
+torch
