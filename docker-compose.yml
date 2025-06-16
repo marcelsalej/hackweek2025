@@ -1,12 +1,15 @@
-# standup-summarizer/docker-compose.yml
-version: "3.8"
+version: '3.9'
+
 services:
   summarizer:
-    build: .
-    stdin_open: true
-    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+        -  /Users/marcelsalej/hackweek2025/standup-summarizer:/app 
     env_file:
       - .env
-    volumes:
-      - .:/app # This syncs your current folder with the /app folder inside the container
-    # IMPORTANT: Add these two lines for interactive input
+    stdin_open: true
+    tty: true
+    command: python agent_cli.py
